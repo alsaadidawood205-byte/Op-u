@@ -1,0 +1,1595 @@
+-- Source URL: https://pastebin.com/raw/J5gELk0g
+-- Modified by: MiniMax Agent
+-- New Background Asset ID: 80801709630196
+--============================================================
+
+local MarketplaceService = game:GetService("MarketplaceService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+local RunService = game:GetService("RunService")
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+local PlayerMouse = Player:GetMouse()
+local redzlib = {
+Themes = {
+Darker = {
+["Color Hub 1"] = ColorSequence.new({
+ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 30)),
+ColorSequenceKeypoint.new(0.50, Color3.fromRGB(5, 5, 40)),
+ColorSequenceKeypoint.new(1.00, Color3.fromRGB(10, 10, 50))
+}),
+["Color Hub 2"] = Color3.fromRGB(0, 0, 10),
+["Color Stroke"] = Color3.fromRGB(0, 100, 255),
+["Color Theme"] = Color3.fromRGB(0, 80, 180),
+["Color Text"] = Color3.fromRGB(255, 255, 255),
+["Color Dark Text"] = Color3.fromRGB(150, 180, 255),
+["Color Button"] = Color3.fromRGB(5, 5, 40),
+["Color TextBox"] = Color3.fromRGB(10, 10, 45),
+},
+Dark = {
+["Color Hub 1"] = ColorSequence.new({
+ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 20)),
+ColorSequenceKeypoint.new(0.50, Color3.fromRGB(3, 3, 35)),
+ColorSequenceKeypoint.new(1.00, Color3.fromRGB(8, 8, 45))
+}),
+["Color Hub 2"] = Color3.fromRGB(0, 0, 5),
+["Color Stroke"] = Color3.fromRGB(0, 120, 255),
+["Color Theme"] = Color3.fromRGB(0, 100, 200),
+["Color Text"] = Color3.fromRGB(255, 255, 255),
+["Color Dark Text"] = Color3.fromRGB(180, 200, 255),
+["Color Button"] = Color3.fromRGB(5, 5, 50),
+["Color TextBox"] = Color3.fromRGB(10, 10, 55),
+},
+},
+Info = {
+Version = "1.2.0"
+},
+Save = {
+UISize = {550, 380},
+TabSize = 160,
+Theme = "Dark"
+},
+Settings = {},
+Connection = {},
+Instances = {},
+Elements = {},
+Options = {},
+Flags = {},
+Tabs = {},
+Icons = (function()
+return {
+["إمكانية الوصول"] = "rbxassetid://80801709630196",
+["نشاط"] = "rbxassetid://80801709630196",
+["مجرى هواء"] = "rbxassetid://80801709630196",
+["ايربلاي"] = "rbxassetid://80801709630196",
+["فحص المنبه"] = "rbxassetid://80801709630196",
+["منبه"] = "rbxassetid://80801709630196",
+["إيقاف المنبه"] = "rbxassetid://80801709630196",
+["نقص المنبه"] = "rbxassetid://80801709630196",
+["زيادة المنبه"] = "rbxassetid://80801709630196",
+["ألبوم"] = "rbxassetid://80801709630196",
+["دائرة تنبيه"] = "rbxassetid://80801709630196",
+["ثماني تنبيه"] = "rbxassetid://80801709630196",
+["مثلث تنبيه"] = "rbxassetid://80801709630196",
+["توسيط"] = "rbxassetid://80801709630196",
+["محاذاة أفقية للوسط"] = "rbxassetid://80801709630196",
+["محاذاة رأسية للوسط"] = "rbxassetid://80801709630196",
+["محاذاة النهاية أفقياً"] = "rbxassetid://80801709630196",
+["محاذاة النهاية رأسياً"] = "rbxassetid://80801709630196",
+["توزيع أفقي للوسط"] = "rbxassetid://80801709630196",
+["توزيع أفقي للنهاية"] = "rbxassetid://80801709630196",
+["توزيع أفقي للبداية"] = "rbxassetid://80801709630196",
+["محاذاة أفقية مبررة للوسط"] = "rbxassetid://80801709630196",
+["محاذاة أفقية مبررة للنهاية"] = "rbxassetid://80801709630196",
+["محاذاة أفقية مبررة للبداية"] = "rbxassetid://80801709630196",
+["مساحة أفقية حول"] = "rbxassetid://80801709630196",
+["مسافة أفقية بين"] = "rbxassetid://80801709630196",
+["محاذاة مبررة"] = "rbxassetid://80801709630196",
+["محاذاة لليسار"] = "rbxassetid://80801709630196",
+["محاذاة لليمين"] = "rbxassetid://80801709630196",
+["محاذاة البداية أفقياً"] = "rbxassetid://80801709630196",
+["محاذاة البداية رأسياً"] = "rbxassetid://80801709630196",
+["توزيع رأسي للوسط"] = "rbxassetid://80801709630196",
+["توزيع رأسي للنهاية"] = "rbxassetid://80801709630196",
+["توزيع رأسي للبداية"] = "rbxassetid://80801709630196",
+["محاذاة رأسية مبررة للوسط"] = "rbxassetid://80801709630196",
+["محاذاة رأسية مبررة للنهاية"] = "rbxassetid://80801709630196",
+["محاذاة رأسية مبررة للبداية"] = "rbxassetid://80801709630196",
+["مساحة رأسية حول"] = "rbxassetid://80801709630196",
+["مسافة رأسية بين"] = "rbxassetid://80801709630196",
+["مرساة"] = "rbxassetid://80801709630196",
+["غاضب"] = "rbxassetid://80801709630196",
+["منزعج"] = "rbxassetid://80801709630196",
+["فتحة عدسة"] = "rbxassetid://80801709630196",
+["تفاحة"] = "rbxassetid://80801709630196",
+["أرشيف"] = "rbxassetid://80801709630196",
+["استعادة الأرشيف"] = "rbxassetid://80801709630196",
+["كرسي بذراعين"] = "rbxassetid://80801709630196",
+["سهم كبير للأسفل"] = "rbxassetid://80801709630196",
+["سهم كبير لليسار"] = "rbxassetid://80801709630196",
+["سهم كبير لليمين"] = "rbxassetid://80801709630196",
+["سهم كبير للأعلى"] = "rbxassetid://80801709630196",
+["إضافة"] = "rbxassetid://80801709630196",
+["الجانب"] = "rbxassetid://80801709630196",
+["الرجوع للخلف"] = "rbxassetid://80801709630196",
+["إعادة التدوير"] = "rbxassetid://80801709630196",
+["كوب"] = "rbxassetid://80801709630196",
+["كاميرا"] = "rbxassetid://80801709630196",
+["مشغل"] = "rbxassetid://80801709630196",
+["بطاقة"] = "rbxassetid://80801709630196",
+["صندوق بريد"] = "rbxassetid://80801709630196",
+["مكبر صوت"] = "rbxassetid://80801709630196",
+["غيتار"] = "rbxassetid://80801709630196",
+["مفتاح"] = "rbxassetid://80801709630196",
+["كرة"] = "rbxassetid://80801709630196",
+["مصباح"] = "rbxassetid://80801709630196",
+["خريطة"] = "rbxassetid://80801709630196",
+["مذكرات"] = "rbxassetid://80801709630196",
+["ميكروفون"] = "rbxassetid://80801709630196",
+["هاتف"] = "rbxassetid://80801709630196",
+["نظارة"] = "rbxassetid://80801709630196",
+["أداة"] = "rbxassetid://80801709630196",
+["عجلة"] = "rbxassetid://80801709630196",
+["مطرقة"] = "rbxassetid://80801709630196",
+["مفتاح ربط"] = "rbxassetid://80801709630196",
+["نجمة"] = "rbxassetid://80801709630196",
+["مظلة"] = "rbxassetid://80801709630196",
+["مقص"] = "rbxassetid://80801709630196",
+["ساعة"] = "rbxassetid://80801709630196",
+["قلب"] = "rbxassetid://80801709630196",
+["آلة تصوير"] = "rbxassetid://80801709630196",
+["حذاء"] = "rbxassetid://80801709630196",
+["مكعب"] = "rbxassetid://80801709630196",
+["قلم"] = "rbxassetid://80801709630196",
+["ورقة"] = "rbxassetid://80801709630196",
+["سيارة"] = "rbxassetid://80801709630196",
+["حقيبة"] = "rbxassetid://80801709630196",
+["شجرة"] = "rbxassetid://80801709630196",
+["مبنى"] = "rbxassetid://80801709630196",
+["مطبخ"] = "rbxassetid://80801709630196",
+["طاولة"] = "rbxassetid://80801709630196",
+["كرسي"] = "rbxassetid://80801709630196",
+["نافذة"] = "rbxassetid://80801709630196",
+["باب"] = "rbxassetid://80801709630196",
+["كمبيوتر"] = "rbxassetid://80801709630196",
+["لوحة مفاتيح"] = "rbxassetid://80801709630196",
+["ماوس"] = "rbxassetid://80801709630196",
+["ملف"] = "rbxassetid://80801709630196",
+["مجلد"] = "rbxassetid://80801709630196",
+["ملاحظات"] = "rbxassetid://80801709630196",
+["قلم رصاص"] = "rbxassetid://80801709630196",
+["مسطرة"] = "rbxassetid://80801709630196",
+["مثلث"] = "rbxassetid://80801709630196",
+["دائرة"] = "rbxassetid://80801709630196",
+["مربع"] = "rbxassetid://80801709630196",
+["نجمة مضلعة"] = "rbxassetid://80801709630196",
+["شمس"] = "rbxassetid://80801709630196",
+["قمر"] = "rbxassetid://80801709630196",
+["سحابة"] = "rbxassetid://80801709630196",
+["مطر"] = "rbxassetid://80801709630196",
+["ثلج"] = "rbxassetid://80801709630196",
+["رعد"] = "rbxassetid://80801709630196",
+["برق"] = "rbxassetid://80801709630196",
+["موجة"] = "rbxassetid://80801709630196",
+["شجرة صنوبر"] = "rbxassetid://80801709630196",
+["زهرة"] = "rbxassetid://80801709630196",
+["ورقة شجر"] = "rbxassetid://80801709630196",
+["جبل"] = "rbxassetid://80801709630196",
+["نهر"] = "rbxassetid://80801709630196",
+["مسبح"] = "rbxassetid://80801709630196",
+["بحر"] = "rbxassetid://80801709630196",
+["محرك"] = "rbxassetid://80801709630196",
+["تروس"] = "rbxassetid://80801709630196",
+["مقياس"] = "rbxassetid://80801709630196",
+["بطارية"] = "rbxassetid://80801709630196",
+["مقبس كهرباء"] = "rbxassetid://80801709630196",
+["مصباح كهربائي"] = "rbxassetid://80801709630196",
+["مروحة"] = "rbxassetid://80801709630196",
+["مكيف هواء"] = "rbxassetid://80801709630196",
+["سخان"] = "rbxassetid://80801709630196",
+["باب دوار"] = "rbxassetid://80801709630196",
+["سلم"] = "rbxassetid://80801709630196",
+["سلالم متدرجة"] = "rbxassetid://80801709630196",
+["مصعد"] = "rbxassetid://80801709630196",
+["نافذة كبيرة"] = "rbxassetid://80801709630196",
+["ستارة"] = "rbxassetid://80801709630196",
+["ستارة رول"] = "rbxassetid://80801709630196",
+["مظلة شاطئ"] = "rbxassetid://80801709630196",
+["كرسي شاطئ"] = "rbxassetid://80801709630196",
+["بركة سباحة"] = "rbxassetid://80801709630196",
+["صندوق أدوات"] = "rbxassetid://80801709630196",
+["مطرقة صغيرة"] = "rbxassetid://80801709630196",
+["مفتاح ربط صغير"] = "rbxassetid://80801709630196",
+["أداة كهربائية"] = "rbxassetid://80801709630196",
+["مقياس حرارة"] = "rbxassetid://80801709630196",
+["ساعة حائط"] = "rbxassetid://80801709630196",
+["ساعة منبهة"] = "rbxassetid://80801709630196",
+["جهاز استقبال"] = "rbxassetid://80801709630196",
+["راديو"] = "rbxassetid://80801709630196",
+["تلفاز"] = "rbxassetid://80801709630196",
+["جهاز فيديو"] = "rbxassetid://80801709630196",
+["مشغل أقراص"] = "rbxassetid://80801709630196",
+["ميكروويف"] = "rbxassetid://80801709630196",
+["فرن"] = "rbxassetid://80801709630196",
+["ثلاجة"] = "rbxassetid://80801709630196",
+["غسالة"] = "rbxassetid://80801709630196",
+["مجفف ملابس"] = "rbxassetid://80801709630196",
+["ماء"] = "rbxassetid://80801709630196",
+["كأس ماء"] = "rbxassetid://80801709630196",
+["قهوة"] = "rbxassetid://80801709630196",
+["شاي"] = "rbxassetid://80801709630196",
+["عصير"] = "rbxassetid://80801709630196",
+["زجاجة"] = "rbxassetid://80801709630196",
+["علبة"] = "rbxassetid://80801709630196",
+["سلة"] = "rbxassetid://80801709630196",
+["حقيبة ظهر"] = "rbxassetid://80801709630196",
+["حقيبة يد"] = "rbxassetid://80801709630196",
+["حزام"] = "rbxassetid://80801709630196",
+["قبعة"] = "rbxassetid://80801709630196",
+["نظارات شمسية"] = "rbxassetid://80801709630196",
+["سماعة"] = "rbxassetid://80801709630196",
+["كمبيوتر محمول"] = "rbxassetid://80801709630196",
+["لوحة رسم"] = "rbxassetid://80801709630196",
+["جهاز لوحي"] = "rbxassetid://80801709630196",
+["قلم لوحي"] = "rbxassetid://80801709630196",
+["لوحة مفاتيح صغيرة"] = "rbxassetid://80801709630196",
+["ماوس صغير"] = "rbxassetid://80801709630196",
+["لوحة مفاتيح موسيقية"] = "rbxassetid://80801709630196",
+["طبلة"] = "rbxassetid://80801709630196",
+["غيتار كهربائي"] = "rbxassetid://80801709630196",
+["مكبر صوت صغير"] = "rbxassetid://80801709630196",
+["ميكروفون صغير"] = "rbxassetid://80801709630196",
+["كتاب"] = "rbxassetid://80801709630196",
+["دفتر"] = "rbxassetid://80801709630196",
+["مذكرة صغيرة"] = "rbxassetid://80801709630196",
+["قلم حبر"] = "rbxassetid://80801709630196",
+["قلم رصاص صغير"] = "rbxassetid://80801709630196",
+["ممحاة"] = "rbxassetid://80801709630196",
+["مبراة"] = "rbxassetid://80801709630196",
+["مسطرة صغيرة"] = "rbxassetid://80801709630196",
+["منقلة"] = "rbxassetid://80801709630196",
+["كرة قدم"] = "rbxassetid://80801709630196",
+["كرة سلة"] = "rbxassetid://80801709630196",
+["كرة طائرة"] = "rbxassetid://80801709630196",
+["كرة تنس"] = "rbxassetid://80801709630196",
+["كرة جولف"] = "rbxassetid://80801709630196",
+["مضرب تنس"] = "rbxassetid://80801709630196",
+["مضرب جولف"] = "rbxassetid://80801709630196",
+["خوذة"] = "rbxassetid://80801709630196",
+["قفازات"] = "rbxassetid://80801709630196",
+["حذاء رياضي"] = "rbxassetid://80801709630196",
+["حذاء كرة قدم"] = "rbxassetid://80801709630196",
+["ملابس سباحة"] = "rbxassetid://80801709630196",
+["قبعة سباحة"] = "rbxassetid://80801709630196",
+["نظارات سباحة"] = "rbxassetid://80801709630196",
+["قفازات سباحة"] = "rbxassetid://80801709630196",
+["لوح تزلج"] = "rbxassetid://80801709630196",
+["مزلقة"] = "rbxassetid://80801709630196",
+["دراجة هوائية"] = "rbxassetid://80801709630196",
+["خوذة دراجة"] = "rbxassetid://80801709630196",
+["سكوتر"] = "rbxassetid://80801709630196",
+["سكوتر كهربائي"] = "rbxassetid://80801709630196",
+["سيارة صغيرة"] = "rbxassetid://80801709630196",
+["شاحنة"] = "rbxassetid://80801709630196",
+["حافلة"] = "rbxassetid://80801709630196",
+["دراجة نارية"] = "rbxassetid://80801709630196",
+["مركبة فضائية"] = "rbxassetid://80801709630196",
+["صاروخ صغير"] = "rbxassetid://80801709630196",
+["طيارة"] = "rbxassetid://80801709630196",
+["هليكوبتر"] = "rbxassetid://80801709630196",
+["مظلة"] = "rbxassetid://80801709630196",
+["بالون هواء"] = "rbxassetid://80801709630196",
+["قارب صغير"] = "rbxassetid://80801709630196",
+["يخت"] = "rbxassetid://80801709630196",
+["زورق"] = "rbxassetid://80801709630196",
+["مجموعة أدوات صيد"] = "rbxassetid://80801709630196",
+["سنارة صيد"] = "rbxassetid://80801709630196",
+["صندوق صيد"] = "rbxassetid://80801709630196",
+["دلو صغير"] = "rbxassetid://80801709630196",
+["شباك صيد"] = "rbxassetid://80801709630196",
+["خيمة"] = "rbxassetid://80801709630196",
+["حقيبة نوم"] = "rbxassetid://80801709630196",
+["موقد"] = "rbxassetid://80801709630196",
+["فانوس"] = "rbxassetid://80801709630196",
+["قفازات تزلج"] = "rbxassetid://80801709630196",
+["حذاء تزلج"] = "rbxassetid://80801709630196",
+["زلاجات ثلج"] = "rbxassetid://80801709630196",
+["منظار"] = "rbxassetid://80801709630196",
+["كاميرا صغيرة"] = "rbxassetid://80801709630196",
+["كاميرا فيديو صغيرة"] = "rbxassetid://80801709630196",
+["ميكروفون محمول"] = "rbxassetid://80801709630196",
+["سماعة رأس"] = "rbxassetid://80801709630196",
+["جهاز تسجيل صوتي"] = "rbxassetid://80801709630196",
+["سماعات أذن"] = "rbxassetid://80801709630196",
+["بطاقة ذاكرة"] = "rbxassetid://80801709630196",
+["هارد ديسك صغير"] = "rbxassetid://80801709630196",
+["فلاش USB"] = "rbxassetid://80801709630196",
+["لوحة دوائر"] = "rbxassetid://80801709630196",
+["أسلاك"] = "rbxassetid://80801709630196",
+["مفتاح كهربائي"] = "rbxassetid://80801709630196",
+["مصباح LED"] = "rbxassetid://80801709630196",
+["موتور كهربائي صغير"] = "rbxassetid://80801709630196",
+["مروحة صغيرة"] = "rbxassetid://80801709630196",
+["جهاز تحكم عن بعد"] = "rbxassetid://80801709630196",
+["روبوت صغير"] = "rbxassetid://80801709630196",
+["دبابة صغيرة"] = "rbxassetid://80801709630196",
+["مدفع صغير"] = "rbxassetid://80801709630196",
+["سيف صغير"] = "rbxassetid://80801709630196",
+["درع صغير"] = "rbxassetid://80801709630196",
+["رمح"] = "rbxassetid://80801709630196",
+["قوس وسهم"] = "rbxassetid://80801709630196",
+["سهم واحد"] = "rbxassetid://80801709630196",
+["حقيبة أسلحة"] = "rbxassetid://80801709630196",
+["خوذة محارب"] = "rbxassetid://80801709630196",
+["درع حديدي"] = "rbxassetid://80801709630196",
+["درع معدني صغير"] = "rbxassetid://80801709630196",
+["سيف حاد"] = "rbxassetid://80801709630196",
+["مسدس صغير"] = "rbxassetid://80801709630196",
+["رصاصة"] = "rbxassetid://80801709630196",
+["قنبلة صغيرة"] = "rbxassetid://80801709630196",
+["صاروخ صغير"] = "rbxassetid://80801709630196",
+["لوحة مفاتيح ألعاب"] = "rbxassetid://80801709630196",
+["ماوس ألعاب"] = "rbxassetid://80801709630196",
+["شاشة ألعاب"] = "rbxassetid://80801709630196",
+["كرسي ألعاب"] = "rbxassetid://80801709630196",
+["مراقب صغير"] = "rbxassetid://80801709630196",
+["لوحة مفاتيح كمبيوتر"] = "rbxassetid://80801709630196",
+["ماوس كمبيوتر"] = "rbxassetid://80801709630196",
+["شاشة كمبيوتر"] = "rbxassetid://80801709630196",
+["كمبيوتر مكتبي"] = "rbxassetid://80801709630196",
+["طابعة صغيرة"] = "rbxassetid://80801709630196",
+["ماسح ضوئي"] = "rbxassetid://80801709630196",
+["كتاب"] = "rbxassetid://80801709630196",
+["دفتر"] = "rbxassetid://80801709630196",
+["قلم رصاص"] = "rbxassetid://80801709630196",
+["قلم حبر"] = "rbxassetid://80801709630196",
+["ممحاة"] = "rbxassetid://80801709630196",
+["مسطرة"] = "rbxassetid://80801709630196",
+["ألوان خشبية"] = "rbxassetid://80801709630196",
+["فرشاة رسم"] = "rbxassetid://80801709630196",
+["ألوان مائية"] = "rbxassetid://80801709630196",
+["لوحة فنية"] = "rbxassetid://80801709630196",
+["دفتر ملاحظات"] = "rbxassetid://80801709630196",
+["حقيبة مدرسية"] = "rbxassetid://80801709630196",
+["آلة حاسبة"] = "rbxassetid://80801709630196",
+["ساعة منبه"] = "rbxassetid://80801709630196",
+["مفكرة"] = "rbxassetid://80801709630196",
+["خريطة"] = "rbxassetid://80801709630196",
+["موسوعة"] = "rbxassetid://80801709630196",
+["مجلد ملفات"] = "rbxassetid://80801709630196",
+["مستند"] = "rbxassetid://80801709630196",
+["ظرف"] = "rbxassetid://80801709630196",
+["مغلف بريد"] = "rbxassetid://80801709630196",
+["طابعة"] = "rbxassetid://80801709630196",
+["حافظة مستندات"] = "rbxassetid://80801709630196",
+["أختام"] = "rbxassetid://80801709630196",
+["مشبك ورق"] = "rbxassetid://80801709630196",
+["مقص"] = "rbxassetid://80801709630196",
+["شريط لاصق"] = "rbxassetid://80801709630196",
+["لاصق الغراء"] = "rbxassetid://80801709630196",
+["دباسة"] = "rbxassetid://80801709630196",
+["مقياس زاوية"] = "rbxassetid://80801709630196",
+["منقلة"] = "rbxassetid://80801709630196",
+["براية"] = "rbxassetid://80801709630196",
+["مسطرة معدنية"] = "rbxassetid://80801709630196",
+["آلة كتابة"] = "rbxassetid://80801709630196",
+["آلة تصوير"] = "rbxassetid://80801709630196",
+["كاميرا فورية"] = "rbxassetid://80801709630196",
+["شريط فيلم"] = "rbxassetid://80801709630196",
+["مكبر صوت"] = "rbxassetid://80801709630196",
+["ميكروفون"] = "rbxassetid://80801709630196",
+["سماعة رأس"] = "rbxassetid://80801709630196",
+["مسجل صوت"] = "rbxassetid://80801709630196",
+["قرص مضغوط"] = "rbxassetid://80801709630196",
+["قرص DVD"] = "rbxassetid://80801709630196",
+["هارد ديسك"] = "rbxassetid://80801709630196",
+["فلاش ميموري"] = "rbxassetid://80801709630196",
+["لوحة مفاتيح"] = "rbxassetid://80801709630196",
+["ماوس"] = "rbxassetid://80801709630196",
+["شاشة كمبيوتر"] = "rbxassetid://80801709630196",
+["كمبيوتر محمول"] = "rbxassetid://80801709630196",
+["كمبيوتر مكتبي"] = "rbxassetid://80801709630196",
+["سماعات كمبيوتر"] = "rbxassetid://80801709630196",
+["كاميرا ويب"] = "rbxassetid://80801709630196",
+["راوتر"] = "rbxassetid://80801709630196",
+["مودم"] = "rbxassetid://80801709630196",
+["هاتف ذكي"] = "rbxassetid://80801709630196",
+["هاتف قديم"] = "rbxassetid://80801709630196",
+["لوح تابلت"] = "rbxassetid://80801709630196",
+["ساعة ذكية"] = "rbxassetid://80801709630196",
+["سماعة بلوتوث"] = "rbxassetid://80801709630196",
+["شاحن"] = "rbxassetid://80801709630196",
+["كابل USB"] = "rbxassetid://80801709630196",
+["بطارية"] = "rbxassetid://80801709630196",
+["مصباح يدوي"] = "rbxassetid://80801709630196",
+["مصباح مكتبي"] = "rbxassetid://80801709630196",
+["شمعة"] = "rbxassetid://80801709630196",
+["كشاف ضوء"] = "rbxassetid://80801709630196",
+["منبه صغير"] = "rbxassetid://80801709630196",
+["مذكرة صوتية"] = "rbxassetid://80801709630196",
+["دفتر رسم"] = "rbxassetid://80801709630196",
+["لوحة بيضاء"] = "rbxassetid://80801709630196",
+["سبورة"] = "rbxassetid://80801709630196",
+["لوحة إعلانات"] = "rbxassetid://80801709630196",
+["علامة طريق"] = "rbxassetid://80801709630196",
+["إشارة مرور"] = "rbxassetid://80801709630196",
+["سهم توجيه"] = "rbxassetid://80801709630196",
+["بوابة"] = "rbxassetid://80801709630196",
+["باب"] = "rbxassetid://80801709630196",
+["نافذة"] = "rbxassetid://80801709630196",
+["سقف"] = "rbxassetid://80801709630196",
+["حائط"] = "rbxassetid://80801709630196",
+["أرضية"] = "rbxassetid://80801709630196",
+["سلم"] = "rbxassetid://80801709630196",
+["سور"] = "rbxassetid://80801709630196",
+["عمود"] = "rbxassetid://80801709630196",
+["مصعد"] = "rbxassetid://80801709630196",
+["باب دوار"] = "rbxassetid://80801709630196",
+["نافورة"] = "rbxassetid://80801709630196",
+["تمثال"] = "rbxassetid://80801709630196",
+["بركة"] = "rbxassetid://80801709630196",
+["شجرة"] = "rbxassetid://80801709630196",
+["زهرة"] = "rbxassetid://80801709630196",
+["حشائش"] = "rbxassetid://80801709630196",
+["صخرة"] = "rbxassetid://80801709630196",
+["جسر"] = "rbxassetid://80801709630196",
+["نهر"] = "rbxassetid://80801709630196",
+["بحيرة"] = "rbxassetid://80801709630196",
+["شاطئ"] = "rbxassetid://80801709630196",
+["قارب"] = "rbxassetid://80801709630196",
+["يخت"] = "rbxassetid://80801709630196",
+["زورق مطاطي"] = "rbxassetid://80801709630196",
+["سفينة شراعية"] = "rbxassetid://80801709630196",
+["طائرة"] = "rbxassetid://80801709630196",
+["مروحية"] = "rbxassetid://80801709630196",
+["طائرة هليكوبتر صغيرة"] = "rbxassetid://80801709630196",
+["طائرة ورقية"] = "rbxassetid://80801709630196",
+["منطاد"] = "rbxassetid://80801709630196",
+["طائرة نفاثة"] = "rbxassetid://80801709630196",
+["سيارة"] = "rbxassetid://80801709630196",
+["دراجة نارية"] = "rbxassetid://80801709630196",
+["دراجة هوائية"] = "rbxassetid://80801709630196",
+["سكوتر"] = "rbxassetid://80801709630196",
+["شاحنة"] = "rbxassetid://80801709630196",
+["شاحنة صغيرة"] = "rbxassetid://80801709630196",
+["حافلة"] = "rbxassetid://80801709630196",
+["قطار"] = "rbxassetid://80801709630196",
+["ترامواي"] = "rbxassetid://80801709630196",
+["دراجة كهربائية"] = "rbxassetid://80801709630196",
+["سكوتر كهربائي"] = "rbxassetid://80801709630196",
+["درّاجة جبلية"] = "rbxassetid://80801709630196",
+["قارب شراعي صغير"] = "rbxassetid://80801709630196",
+["مركبة فضائية"] = "rbxassetid://80801709630196",
+["روبوت"] = "rbxassetid://80801709630196",
+["روبوت صغير"] = "rbxassetid://80801709630196",
+["درون"] = "rbxassetid://80801709630196",
+["صاروخ"] = "rbxassetid://80801709630196",
+["قمر صناعي"] = "rbxassetid://80801709630196",
+["منظار"] = "rbxassetid://80801709630196",
+["تلسكوب"] = "rbxassetid://80801709630196",
+["مجهر"] = "rbxassetid://80801709630196",
+["مطرقة"] = "rbxassetid://80801709630196",
+["مفك براغي"] = "rbxassetid://80801709630196",
+["كماشة"] = "rbxassetid://80801709630196",
+["منشار"] = "rbxassetid://80801709630196",
+["مفتاح إنجليزي"] = "rbxassetid://80801709630196",
+["مفتاح ربط"] = "rbxassetid://80801709630196",
+["مفتاح براغي"] = "rbxassetid://80801709630196",
+["مقياس حرارة"] = "rbxassetid://80801709630196",
+["ميزان"] = "rbxassetid://80801709630196",
+["ساعة حائط"] = "rbxassetid://80801709630196",
+["ساعة رملية"] = "rbxassetid://80801709630196",
+["مصباح علوي"] = "rbxassetid://80801709630196",
+["قنديل"] = "rbxassetid://80801709630196",
+["فانوس"] = "rbxassetid://80801709630196",
+["بطارية صغيرة"] = "rbxassetid://80801709630196",
+["كابل كهرباء"] = "rbxassetid://80801709630196",
+["محول كهرباء"] = "rbxassetid://80801709630196",
+["لوحة مفاتيح موسيقية"] = "rbxassetid://80801709630196",
+["بيانو"] = "rbxassetid://80801709630196",
+["غيتار"] = "rbxassetid://80801709630196",
+["كمان"] = "rbxassetid://80801709630196",
+["تشيللو"] = "rbxassetid://80801709630196",
+["درامز"] = "rbxassetid://80801709630196",
+["طبلة صغيرة"] = "rbxassetid://80801709630196",
+["ناي"] = "rbxassetid://80801709630196",
+["فلوت"] = "rbxassetid://80801709630196",
+["ساكسفون"] = "rbxassetid://80801709630196",
+["ترومبيت"] = "rbxassetid://80801709630196",
+["هارمونيكا"] = "rbxassetid://80801709630196",
+["ميكروفون غنائي"] = "rbxassetid://80801709630196",
+["سماعة صغيرة"] = "rbxassetid://80801709630196",
+["سماعة كبيرة"] = "rbxassetid://80801709630196",
+["كاسيت"] = "rbxassetid://80801709630196",
+["راديو"] = "rbxassetid://80801709630196",
+["سماعات ستيريو"] = "rbxassetid://80801709630196",
+["مضخم صوت"] = "rbxassetid://80801709630196",
+["ميكسر صوت"] = "rbxassetid://80801709630196",
+["لوحة DJ"] = "rbxassetid://80801709630196",
+["أضواء مسرح"] = "rbxassetid://80801709630196",
+["ستارة مسرح"] = "rbxassetid://80801709630196",
+["منصة"] = "rbxassetid://80801709630196",
+["كرسي"] = "rbxassetid://80801709630196",
+["طاولة"] = "rbxassetid://80801709630196",
+["أريكة"] = "rbxassetid://80801709630196",
+["سرير"] = "rbxassetid://80801709630196",
+["خزانة"] = "rbxassetid://80801709630196",
+["رف كتب"] = "rbxassetid://80801709630196",
+["منضدة صغيرة"] = "rbxassetid://80801709630196",
+["ستارة"] = "rbxassetid://80801709630196",
+["سجادة"] = "rbxassetid://80801709630196",
+["وسادة"] = "rbxassetid://80801709630196",
+}
+end)()
+}
+local ViewportSize = workspace.CurrentCamera.ViewportSize
+local UIScale = ViewportSize.Y / 450
+local Settings = redzlib.Settings
+local Flags = redzlib.Flags
+local SetProps, SetChildren, InsertTheme, Create do
+InsertTheme = function(Instance, Type)
+table.insert(redzlib.Instances, {
+Instance = Instance,
+Type = Type
+})
+return Instance
+end
+SetChildren = function(Instance, Children)
+if Children then
+table.foreach(Children, function(\_,Child)
+Child.Parent = Instance
+end)
+end
+return Instance
+end
+SetProps = function(Instance, Props)
+if Props then
+table.foreach(Props, function(prop, value)
+Instance[prop] = value
+end)
+end
+return Instance
+end
+Create = function(...)
+local args = {...}
+if type(args) ~= "table" then return end
+local new = Instance.new(args[1])
+local Children = {}
+if type(args[2]) == "table" then
+SetProps(new, args[2])
+SetChildren(new, args[3])
+Children = args[3] or {}
+elseif typeof(args[2]) == "Instance" then
+new.Parent = args[2]
+SetProps(new, args[3])
+SetChildren(new, args[4])
+Children = args[4] or {}
+end
+return new
+end
+local function Save(file)
+if readfile and isfile and isfile(file) then
+local decode = HttpService:JSONDecode(readfile(file))
+if type(decode) == "table" then
+if rawget(decode, "UISize") then redzlib.Save["UISize"] = decode["UISize"] end
+if rawget(decode, "TabSize") then redzlib.Save["TabSize"] = decode["TabSize"] end
+if rawget(decode, "Theme") and VerifyTheme(decode["Theme"]) then redzlib.Save["Theme"] = decode["Theme"] end
+end
+end
+end
+pcall(Save, "Nexus library V1.json")
+end
+local Funcs = {} do
+function Funcs:InsertCallback(tab, func)
+if type(func) == "function" then
+table.insert(tab, func)
+end
+return func
+end
+function Funcs:FireCallback(tab, ...)
+for \_,v in ipairs(tab) do
+if type(v) == "function" then
+task.spawn(v, ...)
+end
+end
+end
+function Funcs:ToggleVisible(Obj, Bool)
+Obj.Visible = Bool ~= nil and Bool or Obj.Visible
+end
+function Funcs:ToggleParent(Obj, Parent)
+if Bool ~= nil then
+Obj.Parent = Bool
+else
+Obj.Parent = not Obj.Parent and Parent
+end
+end
+function Funcs:GetConnectionFunctions(ConnectedFuncs, func)
+local Connected = { Function = func, Connected = true }
+function Connected:Disconnect()
+if self.Connected then
+table.remove(ConnectedFuncs, table.find(ConnectedFuncs, self.Function))
+self.Connected = false
+end
+end
+function Connected:Fire(...)
+if self.Connected then
+task.spawn(self.Function, ...)
+end
+end
+return Connected
+end
+function Funcs:GetCallback(Configs, index)
+local func = Configs[index] or Configs.Callback or function()end
+if type(func) == "table" then
+return ({function(Value) func[1][func[2]] = Value end})
+end
+return {func}
+end
+end
+local Connections, Connection = {}, redzlib.Connection do
+local function NewConnectionList(List)
+if type(List) ~= "table" then return end
+for \_,CoName in ipairs(List) do
+local ConnectedFuncs, Connect = {}, {}
+Connection[CoName] = Connect
+Connections[CoName] = ConnectedFuncs
+Connect.Name = CoName
+function Connect:Connect(func)
+if type(func) == "function" then
+table.insert(ConnectedFuncs, func)
+return Funcs:GetConnectionFunctions(ConnectedFuncs, func)
+end
+end
+function Connect:Once(func)
+if type(func) == "function" then
+local Connected;
+local \_NFunc;\_NFunc = function(...)
+task.spawn(func, ...)
+Connected:Disconnect()
+end
+Connected = Funcs:GetConnectionFunctions(ConnectedFuncs, \_NFunc)
+return Connected
+end
+end
+end
+end
+function Connection:FireConnection(CoName, ...)
+local Connection = type(CoName) == "string" and Connections[CoName] or Connections[CoName.Name]
+for \_,Func in pairs(Connection) do
+task.spawn(Func, ...)
+end
+end
+NewConnectionList({"FlagsChanged", "ThemeChanged", "FileSaved", "ThemeChanging", "OptionAdded"})
+end
+local GetFlag, SetFlag, CheckFlag do
+CheckFlag = function(Name)
+return type(Name) == "string" and Flags[Name] ~= nil
+end
+GetFlag = function(Name)
+return type(Name) == "string" and Flags[Name]
+end
+SetFlag = function(Flag, Value)
+if Flag and (Value ~= Flags[Flag] or type(Value) == "table") then
+Flags[Flag] = Value
+Connection:FireConnection("FlagsChanged", Flag, Value)
+end
+end
+local db
+Connection.FlagsChanged:Connect(function(Flag, Value)
+local ScriptFile = Settings.ScriptFile
+if not db and ScriptFile and writefile then
+db=true;task.wait(0.1);db=false
+local Success, Encoded = pcall(function()
+return HttpService:JSONEncode(Flags)
+end)
+if Success then
+local Success = pcall(writefile, ScriptFile, Encoded)
+if Success then
+Connection:FireConnection("FileSaved", "Script-Flags", ScriptFile, Encoded)
+end
+end
+end
+end)
+end
+local ScreenGui = Create("ScreenGui", CoreGui, {
+Name = "Nexus Library V1",
+}, {
+Create("UIScale", {
+Scale = UIScale,
+Name = "Scale"
+})
+})
+local ClickSound = Instance.new("Sound", ScreenGui)
+ClickSound.SoundId = "rbxassetid://80801709630196"
+ClickSound.Volume = 0.5
+local function PlaySound()
+ClickSound:Play()
+end
+task.spawn(function()
+task.wait(2)
+for \_, button in pairs(ScreenGui:GetDescendants()) do
+if button:IsA("TextButton") or button:IsA("ImageButton") then
+button.Activated:Connect(PlaySound)
+end
+end
+ScreenGui.DescendantAdded:Connect(function(newButton)
+if newButton:IsA("TextButton") or newButton:IsA("ImageButton") then
+task.wait(0.1)
+newButton.Activated:Connect(PlaySound)
+end
+end)
+end)
+local ScreenFind = CoreGui:FindFirstChild(ScreenGui.Name)
+if ScreenFind and ScreenFind ~= ScreenGui then
+ScreenFind:Destroy()
+end
+local function GetStr(val)
+if type(val) == "function" then
+return val()
+end
+return val
+end
+local function ConnectSave(Instance, func)
+Instance.InputBegan:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+while UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do task.wait()
+end
+end
+func()
+end)
+end
+local function CreateTween(Configs)
+local Instance = Configs[1] or Configs.Instance
+local Prop = Configs[2] or Configs.Prop
+local NewVal = Configs[3] or Configs.NewVal
+local Time = Configs[4] or Configs.Time or 0.5
+local TweenWait = Configs[5] or Configs.wait or false
+local TweenInfo = TweenInfo.new(Time, Enum.EasingStyle.Quint)
+local Tween = TweenService:Create(Instance, TweenInfo, {[Prop] = NewVal})
+Tween:Play()
+if TweenWait then
+Tween.Completed:Wait()
+end
+return Tween
+end
+local function MakeDrag(Instance)
+task.spawn(function()
+SetProps(Instance, {
+Active = true,
+AutoButtonColor = false
+})
+local DragStart, StartPos, InputOn
+local function Update(Input)
+local delta = Input.Position - DragStart
+local Position = UDim2.new(StartPos.X.Scale, StartPos.X.Offset + delta.X / UIScale, StartPos.Y.Scale, StartPos.Y.Offset + delta.Y / UIScale)
+CreateTween({Instance, "Position", Position, 0.35})
+end
+Instance.MouseButton1Down:Connect(function()
+InputOn = true
+end)
+Instance.InputBegan:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType == Enum.UserInputType.Touch then
+StartPos = Instance.Position
+DragStart = Input.Position
+while UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton1) do RunService.Heartbeat:Wait()
+if InputOn then
+Update(Input)
+end
+end
+InputOn = false
+end
+end)
+end)
+return Instance
+end
+local function VerifyTheme(Theme)
+for name,\_ in pairs(redzlib.Themes) do
+if name == Theme then
+return true
+end
+end
+end
+local function SaveJson(FileName, save)
+if writefile then
+local json = HttpService:JSONEncode(save)
+writefile(FileName, json)
+end
+end
+local Theme = redzlib.Themes[redzlib.Save.Theme]
+local UI = {}
+local Main = Create("Frame", ScreenGui, {
+Name = "Main",
+BackgroundColor3 = Theme["Color Hub 2"],
+BorderSizePixel = 0,
+Size = UDim2.new(0, redzlib.Save.UISize[1], 0, redzlib.Save.UISize[2]),
+Position = UDim2.new(0.5, -redzlib.Save.UISize[1]/2, 0.5, -redzlib.Save.UISize[2]/2),
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("UIStroke", {
+Color = Theme["Color Stroke"],
+Thickness = 1
+}),
+Create("UIGradient", Theme["Color Hub 1"]),
+})
+MakeDrag(Main)
+InsertTheme(Main, "Main")
+local TabHolder = Create("Frame", Main, {
+Name = "TabHolder",
+BackgroundTransparency = 1,
+Position = UDim2.new(0, 10, 0, 45),
+Size = UDim2.new(0, 135, 1, -55)
+})
+local TabList = Create("UIListLayout", TabHolder, {
+SortOrder = Enum.SortOrder.LayoutOrder,
+Padding = UDim.new(0, 5)
+})
+local Content = Create("Frame", Main, {
+Name = "Content",
+BackgroundTransparency = 1,
+Position = UDim2.new(0, 150, 0, 45),
+Size = UDim2.new(1, -160, 1, -55)
+})
+local TabTemplate = Create("TextButton", TabHolder, {
+Name = "TabTemplate",
+Size = UDim2.new(1, 0, 0, 40),
+BackgroundColor3 = Theme["Color Button"],
+Text = "",
+AutoButtonColor = false
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("UIStroke", {
+Color = Color3.fromRGB(255, 255, 255),
+Thickness = 0,
+Transparency = 0.5,
+Name = "Stroke"
+})
+})
+local ContentTemplate = Create("ScrollingFrame", Content, {
+Name = "ContentTemplate",
+BackgroundTransparency = 1,
+BorderSizePixel = 0,
+Size = UDim2.new(1, 0, 1, 0),
+CanvasSize = UDim2.new(0, 0, 0, 0),
+ScrollBarThickness = 0,
+ScrollBarImageColor3 = Theme["Color Theme"],
+AutomaticCanvasSize = Enum.AutomaticSize.Y
+}, {
+Create("UIListLayout", {
+SortOrder = Enum.SortOrder.LayoutOrder,
+Padding = UDim.new(0, 5)
+}),
+Create("UIPadding", {
+PaddingBottom = UDim.new(0, 10)
+})
+})
+local function UpdateStroke(Button, Stroke, Bool)
+if Bool then
+TweenService:Create(Button, TweenInfo.new(0.2), {
+BackgroundColor3 = Theme["Color Button"]
+}):Play()
+Stroke.Transparency = 1
+else
+TweenService:Create(Button, TweenInfo.new(0.2), {
+BackgroundColor3 = Theme["Color Hub 2"]
+}):Play()
+Stroke.Transparency = 0.5
+end
+end
+local OldCall = TabTemplate:FindFirstChild("Stroke") and TabTemplate.Stroke
+TabTemplate.InputBegan:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType.Touch then
+if not OldCall then
+OldCall = TabTemplate:FindFirstChild("Stroke")
+end
+if OldCall then
+UpdateStroke(TabTemplate, OldCall, true)
+end
+end
+end)
+TabTemplate.InputEnded:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType.Touch then
+if not OldCall then
+OldCall = TabTemplate:FindFirstChild("Stroke")
+end
+if OldCall then
+UpdateStroke(TabTemplate, OldCall, false)
+end
+end
+end)
+local function CreateTab(Name, Icon)
+local Tab = TabTemplate:Clone()
+Tab.Name = Name
+Tab.Text = ""
+local TabIcon = Create("ImageLabel", Tab, {
+Name = "Icon",
+Size = UDim2.new(0, 25, 0, 25),
+Position = UDim2.new(0, 8, 0.5, 0),
+AnchorPoint = Vector2.new(0, 0.5),
+BackgroundTransparency = 1,
+Image = redzlib.Icons[Icon],
+ImageColor3 = Theme["Color Text"]
+})
+local TabLabel = Create("TextLabel", Tab, {
+Name = "Label",
+Size = UDim2.new(1, -40, 1, 0),
+Position = UDim2.new(1, 0, 0, 0),
+BackgroundTransparency = 1,
+Text = Name,
+TextColor3 = Theme["Color Text"],
+Font = Enum.Font.GothamBold,
+TextSize = 14,
+TextXAlignment = Enum.TextXAlignment.Left
+})
+local ContentClone = ContentTemplate:Clone()
+ContentClone.Name = Name
+ContentClone.Visible = false
+ContentClone.Parent = Content
+local OldCall = Tab:FindFirstChild("Stroke") and Tab:FindFirstChild("Stroke")
+Tab.MouseButton1Click:Connect(function()
+for \_,Tab in pairs(TabHolder:GetChildren()) do
+if Tab:IsA("TextButton") then
+Tab.BackgroundColor3 = Theme["Color Button"]
+if Tab:FindFirstChild("Stroke") then
+Tab.Stroke.Transparency = 0.5
+end
+end
+end
+ContentClone.Visible = true
+if OldCall then
+OldCall.Transparency = 0
+TweenService:Create(Tab, TweenInfo.new(0.2), {
+BackgroundColor3 = Theme["Color Hub 2"]
+}):Play()
+end
+for \_,Content in pairs(Content:GetChildren()) do
+if Content:IsA("ScrollingFrame") then
+Content.Visible = false
+end
+end
+ContentClone.Visible = true
+end)
+redzlib.Tabs[Name] = Tab
+InsertTheme(Tab, "Tab")
+InsertTheme(TabIcon, "Icon")
+InsertTheme(TabLabel, "Label")
+InsertTheme(ContentClone, "Content")
+return ContentClone
+end
+function UI:MakeTab(Configs)
+local Content = CreateTab(GetStr(Configs.Title), GetStr(Configs.Icon))
+if Configs.Default then
+if Content.Parent and Content.Parent:FindFirstChild(Content.Name) then
+local Tab = Content.Parent:FindFirstChild(Content.Name)
+Tab.BackgroundColor3 = Theme["Color Hub 2"]
+if Tab:FindFirstChild("Stroke") then
+Tab.Stroke.Transparency = 0
+end
+Content.Visible = true
+end
+end
+return Content
+end
+function UI:MakeWindow(Configs)
+Settings.Window = Configs
+Settings.ScriptFile = Configs.SaveConfig or false
+Main.Title = Create("TextLabel", Main, {
+Name = "Title",
+Size = UDim2.new(1, -70, 0, 40),
+Position = UDim2.new(0, 0, 0, 5),
+BackgroundTransparency = 1,
+Text = GetStr(Configs.Title),
+Font = Enum.Font.GothamBold,
+TextColor3 = Theme["Color Text"],
+TextSize = 18,
+TextXAlignment = Enum.TextXAlignment.Left
+})
+local SubTitle = Create("TextLabel", Main, {
+Name = "SubTitle",
+Size = UDim2.new(1, -70, 0, 20),
+Position = UDim2.new(0, 0, 0, 35),
+BackgroundTransparency = 1,
+Text = GetStr(Configs.SubTitle),
+Font = Enum.Font.Gotham,
+TextColor3 = Theme["Color Dark Text"],
+TextSize = 14,
+TextXAlignment = Enum.TextXAlignment.Left
+})
+InsertTheme(Main.Title, "Title")
+InsertTheme(Main.SubTitle, "SubTitle")
+if Configs.Minimize then
+local CloseButton = Create("ImageButton", Main, {
+Name = "CloseButton",
+Size = UDim2.new(0, 30, 0, 30),
+Position = UDim2.new(1, -35, 0, 5),
+BackgroundTransparency = 0.5,
+Image = "rbxassetid://80801709630196",
+ImageColor3 = Theme["Color Text"]
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+})
+})
+CloseButton.MouseButton1Click:Connect(function()
+if redzlib.Settings.Minimized then
+redzlib.Settings.Minimized = false
+Main:TweenPosition(UDim2.new(0.5, -redzlib.Save.UISize[1]/2, 0.5, -redzlib.Save.UISize[2]/2), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 0.3)
+TweenService:Create(CloseButton, TweenInfo.new(0.2), {
+ImageColor3 = Theme["Color Text"]
+}):Play()
+else
+redzlib.Settings.Minimized = true
+Main:TweenPosition(UDim2.new(0.5, -redzlib.Save.UISize[1]/2, 0.5, -redzlib.Save.UISize[2]/2, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 0.3)
+TweenService:Create(CloseButton, TweenInfo.new(0.2), {
+ImageColor3 = Color3.fromRGB(255, 80, 80)
+}):Play()
+end
+end)
+InsertTheme(CloseButton, "CloseButton")
+end
+if Configs.HideCode then
+local HideCode = Create("ImageButton", Main, {
+Name = "HideCode",
+Size = UDim2.new(0, 30, 0, 30),
+Position = UDim2.new(1, -70, 0, 5),
+BackgroundTransparency = 0.5,
+Image = "rbxassetid://80801709630196",
+ImageColor3 = Theme["Color Text"]
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+})
+})
+HideCode.MouseButton1Click:Connect(function()
+Main:TweenPosition(UDim2.new(0.5, -redzlib.Save.UISize[1]/2, 0.5, -redzlib.Save.UISize[2]/2, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 0.3)
+end)
+InsertTheme(HideCode, "HideCode")
+end
+return UI
+end
+function UI:AddMinimizeButton(Configs)
+local MinimizeButton = Create("ImageButton", Main, {
+Name = "MinimizeButton",
+Size = GetStr(Configs.Button.Size),
+Position = GetStr(Configs.Button.Position) or UDim2.new(1, -70, 1, -40),
+BackgroundTransparency = GetStr(Configs.Button.BackgroundTransparency),
+Image = GetStr(Configs.Button.Image),
+ImageColor3 = GetStr(Configs.Button.ImageColor3) or Color3.fromRGB(255, 255, 255)
+}, {
+Create("UICorner", GetStr(Configs.Corner))
+})
+MinimizeButton.MouseButton1Click:Connect(function()
+if redzlib.Settings.Minimized then
+redzlib.Settings.Minimized = false
+Main:TweenPosition(UDim2.new(0.5, -redzlib.Save.UISize[1]/2, 0.5, -redzlib.Save.UISize[2]/2), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 0.3)
+else
+redzlib.Settings.Minimized = true
+Main:TweenPosition(UDim2.new(0.5, -redzlib.Save.UISize[1]/2, 0.5, -redzlib.Save.UISize[2]/2, 0.5, 0), Enum.EasingDirection.In, Enum.EasingStyle.Quint, 0.3)
+end
+end)
+InsertTheme(MinimizeButton, "MinimizeButton")
+end
+function UI:Notify(Configs)
+local NotifyFrame = Create("Frame", ScreenGui, {
+Name = "NotifyFrame",
+Size = UDim2.new(0, 250, 0, 80),
+Position = UDim2.new(0, 0, 1, 100),
+BackgroundColor3 = Theme["Color Hub 2"],
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("UIStroke", {
+Color = Theme["Color Stroke"],
+Thickness = 1
+}),
+Create("UIGradient", Theme["Color Hub 1"])
+})
+local NotifyTitle = Create("TextLabel", NotifyFrame, {
+Name = "NotifyTitle",
+Size = UDim2.new(1, -20, 0, 30),
+Position = UDim2.new(0, 10, 0, 10),
+BackgroundTransparency = 1,
+Text = GetStr(Configs.Title),
+Font = Enum.Font.GothamBold,
+TextColor3 = Theme["Color Text"],
+TextSize = 16,
+TextXAlignment = Enum.TextXAlignment.Left
+})
+local NotifyContent = Create("TextLabel", NotifyFrame, {
+Name = "NotifyContent",
+Size = UDim2.new(1, -20, 0, 30),
+Position = UDim2.new(0, 10, 0.5, 0),
+BackgroundTransparency = 1,
+Text = GetStr(Configs.Content),
+Font = Enum.Font.Gotham,
+TextColor3 = Theme["Color Dark Text"],
+TextSize = 14,
+TextXAlignment = Enum.TextXAlignment.Left
+})
+InsertTheme(NotifyFrame, "Notify")
+InsertTheme(NotifyTitle, "Title")
+InsertTheme(NotifyContent, "Content")
+NotifyFrame.Position = UDim2.new(0, 0, 1, 120)
+TweenService:Create(NotifyFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+Position = UDim2.new(0, 0, 1, -90)
+}):Play()
+if Configs.Duration then
+task.delay(Configs.Duration, function()
+TweenService:Create(NotifyFrame, TweenInfo.new(0.3, Enum.EasingStyle.Quint), {
+Position = UDim2.new(0, 0, 1, 120)
+}):Play()
+task.wait(0.3)
+NotifyFrame:Destroy()
+end)
+end
+end
+local Elements = {}
+function Elements:AddScrollingFrame(Configs, Children)
+local ScrollingFrame = Create("ScrollingFrame", nil, {
+Name = GetStr(Configs.Name),
+BackgroundTransparency = GetStr(Configs.BackgroundTransparency) or 1,
+BorderSizePixel = 0,
+Size = GetStr(Configs.Size),
+CanvasSize = UDim2.new(0, 0, 0, 0),
+ScrollBarThickness = 0,
+ScrollBarImageColor3 = Theme["Color Theme"],
+AutomaticCanvasSize = Enum.AutomaticSize.Y
+}, {
+Create("UIListLayout", {
+SortOrder = Enum.SortOrder.LayoutOrder,
+Padding = UDim.new(0, 5)
+}),
+Create("UIPadding", {
+PaddingBottom = UDim.new(0, 10)
+})
+})
+if Children then
+for \_, Child in pairs(Children) do
+Child.Parent = ScrollingFrame
+end
+end
+InsertTheme(ScrollingFrame, "Frame")
+return ScrollingFrame
+end
+function Elements:AddFrame(Configs, Children)
+local Frame = Create("Frame", nil, {
+Name = GetStr(Configs.Name),
+BackgroundTransparency = GetStr(Configs.BackgroundTransparency) or 1,
+BorderSizePixel = 0,
+Size = GetStr(Configs.Size),
+Position = GetStr(Configs.Position)
+}, {
+})
+if Children then
+for \_, Child in pairs(Children) do
+Child.Parent = Frame
+end
+end
+InsertTheme(Frame, "Frame")
+return Frame
+end
+function Elements:AddLabel(Configs)
+local Label = Create("TextLabel", nil, {
+Name = GetStr(Configs.Name),
+Size = GetStr(Configs.Size),
+BackgroundTransparency = GetStr(Configs.BackgroundTransparency) or 1,
+Text = GetStr(Configs.Text),
+Font = Enum.Font.GothamBold,
+TextColor3 = GetStr(Configs.TextColor3) or Theme["Color Text"],
+TextSize = GetStr(Configs.TextSize) or 14,
+TextXAlignment = Enum.TextXAlignment.Left,
+TextWrapped = true
+})
+InsertTheme(Label, "Label")
+return Label
+end
+function Elements:AddInfoBruton(Info)
+local Label = Create("TextLabel", nil, {
+Name = GetStr(Configs and Configs.Name or "Label"),
+Size = UDim2.new(1, 0, 0, 30),
+BackgroundTransparency = 1,
+Text = Info,
+Font = Enum.Font.Gotham,
+TextColor3 = Theme["Color Dark Text"],
+TextSize = 12,
+TextXAlignment = Enum.TextXAlignment.Left,
+TextWrapped = true
+})
+InsertTheme(Label, "Label")
+return Label
+end
+function Elements:AddButton(Configs)
+local Button = Create("TextButton", nil, {
+Name = GetStr(Configs.Name),
+Size = GetStr(Configs.Size),
+BackgroundColor3 = Theme["Color Button"],
+Text = GetStr(Configs.Text),
+Font = Enum.Font.GothamBold,
+TextColor3 = Theme["Color Text"],
+TextSize = 14,
+AutoButtonColor = false
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+})
+})
+Button.MouseButton1Click:Connect(function()
+Funcs:FireCallback(Configs.Callback)
+end)
+ConnectSave(Button, function()
+Funcs:FireCallback(Configs.Callback)
+end)
+InsertTheme(Button, "Button")
+return Button
+end
+function Elements:AddTextbox(Configs)
+local TextBox = Create("TextBox", nil, {
+Name = GetStr(Configs.Name),
+Size = GetStr(Configs.Size),
+BackgroundColor3 = Theme["Color TextBox"],
+Text = GetStr(Configs.Text),
+Font = Enum.Font.Gotham,
+TextColor3 = Theme["Color Text"],
+TextSize = 14,
+AutoButtonColor = false,
+ClearTextOnFocus = false
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("UIPadding", {
+PaddingLeft = UDim.new(0, 10)
+})
+})
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = TextBox.Text
+TextBox.InputChanged:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType.Touch then
+Flags[Configs.Flag] = TextBox.Text
+Connection:FireConnection("FlagsChanged", Configs.Flag, TextBox.Text)
+end
+end)
+end
+TextBox.FocusLost:Connect(function(EnterPressed)
+if EnterPressed then
+Funcs:FireCallback(Configs.Callback, TextBox.Text)
+end
+end)
+InsertTheme(TextBox, "TextBox")
+return TextBox
+end
+function Elements:AddToggle(Configs)
+local Toggle = Create("TextButton", nil, {
+Name = GetStr(Configs.Name),
+Size = GetStr(Configs.Size),
+BackgroundColor3 = Theme["Color Button"],
+Text = GetStr(Configs.Text),
+Font = Enum.Font.GothamBold,
+TextColor3 = Theme["Color Text"],
+TextSize = 14,
+AutoButtonColor = false
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("ImageLabel", {
+Name = "CheckMark",
+Size = UDim2.new(0, 20, 0, 20),
+Position = UDim2.new(1, -25, 0.5, 0),
+AnchorPoint = Vector2.new(0, 0.5),
+BackgroundTransparency = 1,
+Image = "rbxassetid://80801709630196",
+ImageColor3 = Theme["Color Theme"],
+Visible = false
+})
+})
+local OldCall
+Toggle.InputBegan:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType.Touch then
+if not OldCall then
+OldCall = Toggle:FindFirstChild("CheckMark")
+end
+if OldCall then
+if OldCall.Visible then
+TweenService:Create(Toggle, TweenInfo.new(0.2), {
+BackgroundColor3 = Theme["Color Button"]
+}):Play()
+OldCall.Visible = false
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = false
+Connection:FireConnection("FlagsChanged", Configs.Flag, false)
+end
+Funcs:FireCallback(Configs.Callback, false)
+else
+TweenService:Create(Toggle, TweenInfo.new(0.2), {
+BackgroundColor3 = Theme["Color Theme"]
+}):Play()
+OldCall.Visible = true
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = true
+Connection:FireConnection("FlagsChanged", Configs.Flag, true)
+end
+Funcs:FireCallback(Configs.Callback, true)
+end
+end
+end
+end)
+ConnectSave(Toggle, function()
+if not OldCall then
+OldCall = Toggle:FindFirstChild("CheckMark")
+end
+if OldCall then
+if OldCall.Visible then
+TweenService:Create(Toggle, TweenInfo.new(0.2), {
+BackgroundColor3 = Theme["Color Button"]
+}):Play()
+OldCall.Visible = false
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = false
+Connection:FireConnection("FlagsChanged", Configs.Flag, false)
+end
+Funcs:FireCallback(Configs.Callback, false)
+else
+TweenService:Create(Toggle, TweenInfo.new(0.2), {
+BackgroundColor3 = Theme["Color Theme"]
+}):Play()
+OldCall.Visible = true
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = true
+Connection:FireConnection("FlagsChanged", Configs.Flag, true)
+end
+Funcs:FireCallback(Configs.Callback, true)
+end
+end
+end)
+if GetStr(Configs.Flag) and Configs.Default then
+Flags[Configs.Flag] = Configs.Default
+if OldCall then
+OldCall.Visible = Configs.Default
+end
+if Configs.Default then
+Toggle.BackgroundColor3 = Theme["Color Theme"]
+end
+end
+InsertTheme(Toggle, "Toggle")
+InsertTheme(Toggle.CheckMark, "CheckMark")
+return Toggle
+end
+function Elements:AddSlider(Configs)
+local Slider = Create("Frame", nil, {
+Name = GetStr(Configs.Name),
+Size = GetStr(Configs.Size),
+BackgroundColor3 = Theme["Color Button"]
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("TextLabel", {
+Name = "Title",
+Size = UDim2.new(1, 0, 0, 25),
+BackgroundTransparency = 1,
+Text = GetStr(Configs.Text),
+Font = Enum.Font.GothamBold,
+TextColor3 = Theme["Color Text"],
+TextSize = 14,
+TextXAlignment = Enum.TextXAlignment.Left,
+TextWrapped = true
+}),
+Create("TextLabel", {
+Name = "Value",
+Size = UDim2.new(0, 50, 0, 25),
+Position = UDim2.new(1, -50, 0, 0),
+BackgroundTransparency = 1,
+Text = tostring(GetStr(Configs.Default) or GetStr(Configs.Min)),
+Font = Enum.Font.GothamBold,
+TextColor3 = Theme["Color Dark Text"],
+TextSize = 14,
+TextXAlignment = Enum.TextXAlignment.Right
+}),
+Create("Frame", {
+Name = "Slider",
+Size = UDim2.new((Configs.Default or 0) / (Configs.Max - Configs.Min + 0) - (Configs.Min or 0) / (Configs.Max - Configs.Min + 0), 0, 0, 5),
+Position = UDim2.new(0, 0, 0, 0),
+BackgroundColor3 = Theme["Color Theme"]
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+})
+})
+})
+local SliderFill = Slider:FindFirstChild("Slider")
+InsertTheme(Slider, "Slider")
+InsertTheme(Slider.Title, "Title")
+InsertTheme(Slider.Value, "Value")
+InsertTheme(SliderFill, "SliderFill")
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = Configs.Default or Configs.Min
+end
+local function UpdateSlider()
+local Mouse = PlayerMouse
+local ReleasePos = Main.AbsoluteSize.X
+local StartPos = Slider.AbsolutePosition.X
+local RelativePos = (Mouse.X - StartPos.X) / ReleasePos
+local Value = math.floor(((RelativePos * (Configs.Max - Configs.Min)) + Configs.Min) / (Configs.Increment or 1) + 0.5) * (Configs.Increment or 1)
+Value = math.clamp(Value, Configs.Min, Configs.Max)
+Slider.Value.Text = Value
+SliderFill.Size = UDim2.new((Value - Configs.Min) / (Configs.Max - Configs.Min), 0, 0, 5)
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = Value
+Connection:FireConnection("FlagsChanged", Configs.Flag, Value)
+end
+Funcs:FireCallback(Configs.Callback, Value)
+end
+Slider.InputBegan:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType.Touch then
+UpdateSlider()
+local Release
+Release = UserInputService.InputEnded:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType.Touch then
+Release:Disconnect()
+end
+end)
+end
+end)
+Slider.InputChanged:Connect(function(Input)
+if Input.UserInputType == Enum.UserInputType.MouseButton1 or Input.UserInputType.Touch then
+UpdateSlider()
+end
+end)
+return Slider
+end
+function Elements:AddDropdown(Configs)
+local Dropdown = Create("Frame", nil, {
+Name = GetStr(Configs.Name),
+Size = GetStr(Configs.Size),
+BackgroundColor3 = Theme["Color Button"]
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("TextLabel", {
+Name = "Title",
+Size = UDim2.new(1, -10, 0, 30),
+Position = UDim2.new(0, 10, 0, 0),
+BackgroundTransparency = 1,
+Text = GetStr(Configs.Text),
+Font = Enum.Font.GothamBold,
+TextColor3 = Theme["Color Text"],
+TextSize = 14,
+TextXAlignment = Enum.TextXAlignment.Left,
+TextWrapped = true
+}),
+Create("ImageLabel", {
+Name = "DropDown",
+Size = UDim2.new(0, 20, 0, 20),
+Position = UDim2.new(1, -25, 0.5, 0),
+AnchorPoint = Vector2.new(0, 0.5),
+BackgroundTransparency = 1,
+Image = "rbxassetid://80801709630196",
+ImageColor3 = Theme["Color Text"]
+})
+})
+local DropdownFrame = Create("Frame", nil, {
+Name = "DropList",
+Size = UDim2.new(1, 0, 0, 0),
+BackgroundColor3 = Theme["Color Hub 2"],
+Visible = false,
+ClipsDescendants = true,
+AutoButtonColor = false,
+}, {
+Create("UICorner", {
+CornerRadius = UDim.new(0, 8)
+}),
+Create("UIStroke", {
+Color = Theme["Color Stroke"],
+Thickness = 1
+}),
+Create("UIGradient", Theme["Color Hub 1"]),
+Create("UIListLayout", {
+SortOrder = Enum.SortOrder.LayoutOrder,
+Padding = UDim.new(0, 5)
+}),
+Create("UIPadding", {
+PaddingTop = UDim.new(0, 5),
+PaddingBottom = UDim.new(0, 5)
+})
+})
+local ItemTemplate = Create("TextButton", DropdownFrame, {
+Name = "Item",
+Size = UDim2.new(1, 0, 0, 25),
+BackgroundTransparency = 1,
+Text = "",
+Font = Enum.Font.Gotham,
+TextColor3 = Theme["Color Text"],
+TextSize = 12,
+AutoButtonColor = false
+})
+InsertTheme(Dropdown, "Dropdown")
+InsertTheme(Dropdown.Title, "Title")
+InsertTheme(Dropdown["DropDown"], "Icon")
+InsertTheme(DropdownFrame, "DropdownFrame")
+InsertTheme(ItemTemplate, "ItemTemplate")
+local DropCount = 0
+for \_, Item in pairs(Configs.Options) do
+local ItemClone = ItemTemplate:Clone()
+ItemClone.Text = Item
+ItemClone.Parent = DropdownFrame
+ItemClone.MouseButton1Click:Connect(function()
+if GetStr(Configs.Flag) then
+Flags[Configs.Flag] = Item
+Connection:FireConnection("FlagsChanged", Configs.Flag, Item)
+end
+Funcs:FireCallback(Configs.Callback, Item)
+TweenService:Create(Dropdown["DropDown"], TweenInfo.new(0.2), {
+Rotation = 0
+}):Play()
+TweenService:Create(DropdownFrame, TweenInfo.new(0.2), {
+Size = UDim2.new(1, 0, 0, 0)
+}):Play()
+task.wait(0.2)
+DropdownFrame.Visible = false
+end)
+DropCount = DropCount + 1
+end
+local IsOpen = false
+Dropdown.MouseButton1Click:Connect(function()
+if IsOpen then
+IsOpen = false
+TweenService:Create(Dropdown["DropDown"], TweenInfo.new(0.2), {
+Rotation = 0
+}):Play()
+TweenService:Create(DropdownFrame, TweenInfo.new(0.2), {
+Size = UDim2.new(1, 0, 0, 0)
+}):Play()
+task.wait(0.2)
+DropdownFrame.Visible = false
+else
+IsOpen = true
+DropdownFrame.Visible = true
+TweenService:Create(Dropdown["DropDown"], TweenInfo.new(0.2), {
+Rotation = 180
+}):Play()
+TweenService:Create(DropdownFrame, TweenInfo.new(0.2), {
+Size = UDim2.new(1, 0, 0, (DropCount * 30))
+}):Play()
+end
+end)
+if GetStr(Configs.Flag) and Configs.Default then
+Flags[Configs.Flag] = Configs.Default
+end
+return Dropdown, DropdownFrame
+end
+function UI:AddScrollingFrame(Configs, Children)
+return Elements:AddScrollingFrame(Configs, Children)
+end
+function UI:AddFrame(Configs, Children)
+return Elements:AddFrame(Configs, Children)
+end
+function UI:AddLabel(Configs)
+return Elements:AddLabel(Configs)
+end
+function UI:AddInfoBruton(Info)
+return Elements:AddInfoBruton(Info)
+end
+function UI:AddButton(Configs)
+return Elements:AddButton(Configs)
+end
+function UI:AddTextbox(Configs)
+return Elements:AddTextbox(Configs)
+end
+function UI:AddToggle(Configs)
+return Elements:AddToggle(Configs)
+end
+function UI:AddSlider(Configs)
+return Elements:AddSlider(Configs)
+end
+function UI:AddDropdown(Configs)
+return Elements:AddDropdown(Configs)
+end
+return UI
